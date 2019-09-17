@@ -4,7 +4,8 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.gluonhq.picluster.mobile.GluonCloudLinkService;
+import com.gluonhq.cloudlink.enterprise.sdk.javaee.CloudLinkClient;
+import com.gluonhq.cloudlink.enterprise.sdk.javaee.CloudLinkClientConfig;
 
 public class Main {
 
@@ -44,12 +45,13 @@ public class Main {
             cloudlinkServerKey = args[2];
         }
 
-        GluonCloudLinkService gluonCloudLinkService = new GluonCloudLinkService(cloudlinkServerKey);
+        CloudLinkClientConfig cloudLinkClientConfig = new CloudLinkClientConfig(cloudlinkServerKey);
+        CloudLinkClient cloudLinkClient = new CloudLinkClient(cloudLinkClientConfig);
 
-        DeviceListener deviceListener = new DeviceListener(gluonCloudLinkService);
+        DeviceListener deviceListener = new DeviceListener(cloudLinkClient);
         deviceListener.startListening();
 
-        ExternalRequestHandler externalRequestHandler = new ExternalRequestHandler(autonomousDatabaseWriter, gluonCloudLinkService);
+        ExternalRequestHandler externalRequestHandler = new ExternalRequestHandler(autonomousDatabaseWriter, cloudLinkClient);
         externalRequestHandler.startListening();
     }
 

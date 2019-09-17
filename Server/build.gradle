@@ -13,8 +13,13 @@ dependencies {
     runtime files('lib/osdt_cert.jar')
     runtime files('lib/osdt_core.jar')
 
-    implementation 'javax.json.bind:javax.json.bind-api:1.0'
+    implementation 'com.gluonhq:cloudlink-enterprise-sdk-javaee:1.2.2'
     runtimeOnly 'org.eclipse:yasson:1.0.5'
+    runtimeOnly 'org.glassfish:javax.el:3.0.1-b09'
+    runtimeOnly 'org.glassfish.jersey.core:jersey-client:2.29.1'
+    runtimeOnly 'org.glassfish.jersey.inject:jersey-hk2:2.29.1'
+    runtimeOnly 'javax.activation:activation:1.1.1'
+    runtimeOnly 'org.hibernate.validator:hibernate-validator:6.0.17.Final'
 }
 
 sourceCompatibility = 11

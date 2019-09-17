@@ -11,7 +11,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.logging.Logger;
 
-import com.gluonhq.picluster.mobile.GluonCloudLinkService;
+import com.gluonhq.cloudlink.enterprise.sdk.javaee.CloudLinkClient;
 
 public class DeviceListener {
 
@@ -21,10 +21,10 @@ public class DeviceListener {
     boolean accepting = true;
     String SEP = ";";
 
-    private final GluonCloudLinkService gluonCloudLinkService;
+    private final CloudLinkClient cloudLinkClient;
 
-    public DeviceListener(GluonCloudLinkService gluonCloudLinkService) {
-        this.gluonCloudLinkService = gluonCloudLinkService;
+    public DeviceListener(CloudLinkClient cloudLinkClient) {
+        this.cloudLinkClient = cloudLinkClient;
     }
 
     public void startListening()  {
@@ -145,7 +145,7 @@ public class DeviceListener {
                 bw.write("thanks\n");
                 bw.flush();
                 task.answer = result;
-                gluonCloudLinkService.removeObjectFromList(ExternalRequestHandler.GLUONLIST_BLOCKS, task.id);
+                cloudLinkClient.removeFromList(ExternalRequestHandler.GLUONLIST_BLOCKS, task.id);
             }
         }
     }

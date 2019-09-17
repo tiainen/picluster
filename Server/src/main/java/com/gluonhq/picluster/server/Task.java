@@ -2,7 +2,7 @@ package com.gluonhq.picluster.server;
 
 import java.util.UUID;
 
-import com.gluonhq.picluster.mobile.model.GluonObject;
+import com.gluonhq.cloudlink.enterprise.sdk.javaee.domain.ObjectData;
 
 public class Task {
 
@@ -11,9 +11,9 @@ public class Task {
     String answer;
     boolean processing = false;
 
-    public Task(GluonObject gluonObject) {
-        this.id = gluonObject.getUid();
-        this.url = gluonObject.getPayload();
+    public Task(ObjectData rawBlock) {
+        this.id = rawBlock.getUid();
+        this.url = rawBlock.getPayload();
     }
 
 }
